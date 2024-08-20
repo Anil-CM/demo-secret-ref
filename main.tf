@@ -1,12 +1,19 @@
-# Use a null_resource to run a local command
-resource "null_resource" "hello_world" {
-  # Use local-exec provisioner to print the message
-  provisioner "local-exec" {
-    command = "echo 'Hello World, ---> ${var.name}!'"
+terraform {
+  required_providers {
+    ibm = {
+      source  = "IBM-Cloud/ibm"
+      version = "~> 1.45.0"
+    }
   }
 }
 
-# Output the greeting
-output "greeting" {
-  value = "Hello World, ${var.name}!"
+provider "ibm" {
+  ibmcloud_api_key = var.ibmcloud_api_key
+}
+
+data "ibm_resource_group" "all_resource_groups" {
+}
+
+output "resource_groups" {
+  value = data.ibm_resource_group.all_resource_groups
 }
