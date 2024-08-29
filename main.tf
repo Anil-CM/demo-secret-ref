@@ -12,6 +12,7 @@ provider "ibm" {
 }
 
 data "ibm_resource_group" "all_resource_groups" {
+  is_default = "true"
 }
 
 output "resource_groups" {
