@@ -18,3 +18,7 @@ data "ibm_resource_group" "all_resource_groups" {
 output "resource_groups" {
   value = data.ibm_resource_group.all_resource_groups
 }
+
+output "resolved_git_token" {
+  value = var.name
+}
